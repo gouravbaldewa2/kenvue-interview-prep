@@ -325,6 +325,103 @@ a { color: var(--accent); text-decoration: none; }
 .qa-answer p strong { color: var(--text); }
 .qa-answer ul ul { margin-top: 4px; }
 
+/* ==================== OPENER SECTION ==================== */
+.opener-section { background: var(--bg); }
+
+.opener-badge {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: #fff; background: linear-gradient(135deg, var(--pink), var(--accent));
+    padding: 6px 16px; border-radius: 20px; margin: 0 auto 16px; text-align: center;
+    display: block; width: fit-content; margin-left: auto; margin-right: auto;
+}
+
+.opener-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 32px;
+}
+
+.opener-timer {
+    display: flex; align-items: center; gap: 12px; padding: 16px 24px;
+    background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+.timer-icon { font-size: 18px; }
+.opener-timer > span:nth-child(2) { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+.timer-btn {
+    margin-left: auto; padding: 8px 20px; border-radius: 8px; border: none;
+    background: var(--accent); color: #fff; font-weight: 600; font-size: 13px;
+    cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.timer-btn:hover { background: #5a52e0; }
+.timer-btn.running { background: var(--red); }
+.timer-btn.running:hover { background: #dc2626; }
+.timer-display {
+    font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700;
+    color: var(--text); min-width: 56px; text-align: right;
+}
+.timer-display.over { color: var(--red); }
+.timer-display.warning { color: var(--amber); }
+
+.opener-script { padding: 8px 0; }
+
+.script-block {
+    padding: 20px 24px; border-bottom: 1px solid var(--border);
+    transition: var(--transition); position: relative;
+}
+.script-block:last-child { border-bottom: none; }
+.script-block:hover { background: rgba(108, 99, 255, 0.03); }
+.script-block.closer { background: rgba(108, 99, 255, 0.04); border-left: 3px solid var(--accent); }
+.script-block.highlight { background: rgba(108, 99, 255, 0.08); }
+
+.script-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.script-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent-glow); border: 1px solid rgba(108,99,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    color: var(--accent); flex-shrink: 0;
+}
+.script-tag {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--accent);
+}
+
+.script-block p {
+    font-size: 15px; line-height: 1.7; color: var(--text-muted);
+    padding-left: 38px; /* align with text after number */
+}
+.script-block p strong { color: var(--text); font-weight: 600; }
+
+/* Why grid */
+.opener-why { margin-bottom: 32px; }
+.opener-why h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.why-item {
+    display: flex; align-items: flex-start; gap: 14px; padding: 16px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    transition: var(--transition);
+}
+.why-item:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+.why-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.why-item strong { display: block; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.why-item p { font-size: 13px; color: var(--text-muted); line-height: 1.45; }
+
+/* Practice tips */
+.opener-tips {
+    background: var(--bg-card); border: 1px dashed var(--border); border-radius: var(--radius-lg);
+    padding: 24px 28px;
+}
+.opener-tips h3 { font-size: 16px; font-weight: 700; color: var(--amber); margin-bottom: 14px; }
+.opener-tips ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.opener-tips li {
+    font-size: 14px; color: var(--text-muted); line-height: 1.55;
+    padding-left: 20px; position: relative;
+}
+.opener-tips li::before {
+    content: ''; position: absolute; left: 0; top: 9px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--amber);
+}
+
 /* ==================== CHECKLIST ==================== */
 .progress-bar-container { display: flex; align-items: center; gap: 16px; max-width: 500px; margin: 0 auto 32px; }
 .progress-bar { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }

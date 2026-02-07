@@ -85,6 +85,86 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+// ==================== OPENER TIMER ====================
+let timerInterval = null;
+let timerSeconds = 0;
+
+function toggleTimer() {
+    const btn = document.getElementById('timerBtn');
+    const display = document.getElementById('timerDisplay');
+
+    if (timerInterval) {
+        // Stop
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = 'Reset';
+        btn.classList.remove('running');
+
+        // Next click will reset
+        btn.onclick = resetTimer;
+    } else {
+        // Start
+        timerSeconds = 0;
+        display.textContent = '0:00';
+        display.classList.remove('over', 'warning');
+        btn.textContent = 'Stop';
+        btn.classList.add('running');
+
+        timerInterval = setInterval(() => {
+            timerSeconds++;
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            display.textContent = mins + ':' + secs.toString().padStart(2, '0');
+
+            // Color coding
+            if (timerSeconds > 150) { // > 2:30
+                display.classList.add('over');
+                display.classList.remove('warning');
+            } else if (timerSeconds > 120) { // > 2:00
+                display.classList.add('warning');
+                display.classList.remove('over');
+            } else {
+                display.classList.remove('over', 'warning');
+            }
+
+            // Highlight script blocks progressively
+            highlightBlock(timerSeconds);
+        }, 1000);
+    }
+}
+
+function resetTimer() {
+    const btn = document.getElementById('timerBtn');
+    const display = document.getElementById('timerDisplay');
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timerSeconds = 0;
+    display.textContent = '0:00';
+    display.classList.remove('over', 'warning');
+    btn.textContent = 'Start Timer';
+    btn.classList.remove('running');
+    btn.onclick = toggleTimer;
+
+    // Remove all highlights
+    document.querySelectorAll('.script-block').forEach(b => b.classList.remove('highlight'));
+}
+
+function highlightBlock(seconds) {
+    // Approximate timing for each block during a 2-min delivery
+    const blocks = document.querySelectorAll('.script-block');
+    blocks.forEach(b => b.classList.remove('highlight'));
+
+    let activeStep;
+    if (seconds <= 15) activeStep = 1;
+    else if (seconds <= 40) activeStep = 2;
+    else if (seconds <= 75) activeStep = 3;
+    else if (seconds <= 105) activeStep = 4;
+    else activeStep = 5;
+
+    const activeBlock = document.querySelector(`.script-block[data-step="${activeStep}"]`);
+    if (activeBlock) activeBlock.classList.add('highlight');
+}
+
 // ==================== KEYBOARD NAVIGATION ====================
 document.addEventListener('keydown', (e) => {
     // Escape closes all open day tiles and Q&A items
